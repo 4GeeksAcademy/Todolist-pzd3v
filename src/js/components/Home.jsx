@@ -12,7 +12,7 @@ const Home = () => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       if (inputValue.trim() !== "") {
-        setListaTareas([...listaTareas,
+        setListaTareas([...listaTareas, //[...,["Contast","Comprar comida"],]
             inputValue, 
         ]);
       }
@@ -30,12 +30,13 @@ const Home = () => {
         value={inputValue}
         onKeyDown={handleKeyDown}
       />
-      <ul>
+      <ul className="fst-italic">
+        {listaTareas.length === 0 ? "No hay tareas, añadir tareas" : ""}
         {listaTareas.map((tarea, index) => (
           <li key={index}>
             {tarea}
             <i
-              className="ms-5 btn fa-solid fa-trash-arrow-up"
+              className="delete-icon ms-5 btn fa-solid fa-trash-arrow-up"
               onClick={() =>
                 setListaTareas(
                   listaTareas.filter(
@@ -43,8 +44,7 @@ const Home = () => {
                   ),
                 )
               }
-            >
-            </i>
+            ></i>
           </li>
         ))}
       </ul>
